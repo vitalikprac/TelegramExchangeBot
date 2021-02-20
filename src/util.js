@@ -34,5 +34,5 @@ export const generateSvg = (param)=>{
         return new Date(a.date) - new Date(b.date);
     });
     const svg = line(data);
-    return new Buffer.from(svg.svgString(),'utf-8');
+    return svg.svgString();
 }

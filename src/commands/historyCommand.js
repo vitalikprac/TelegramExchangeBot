@@ -1,7 +1,8 @@
 import fetch from "node-fetch";
 import {API_URL, bot} from "../main.js";
 import {addDays,generateSvg} from "../util.js";
-import svg2png from "svg2png";
+import svg2img from 'svg2img';
+
 
 const INCORRECT_INPUT = `Incorrect input try again (/history USD/CAD)`;
 
@@ -35,8 +36,10 @@ export const historyCommand = async(msg)=>{
     }
 
     const generatedSvg = generateSvg(json);
-    const pngBuffer = await svg2png(generatedSvg);
-    await bot.sendPhoto(msg.chat.id,pngBuffer,{
-        caption: `Currency history for the last 7 days between ${from} and ${to}`
+    const pngBuffer = svg2img(generatedSvg,(err,buffer)=>{
+        bot.sendPhoto(msg.chat.id,buffer,{
+            caption: `Currency history for the last 7 days between ${from} and ${to}`
+        });
     });
+
 }
