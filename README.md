@@ -16,6 +16,8 @@ npm install
 yarn install
 ```
 
+Change token in .env file
+
 ## Usage
 
 Just start type in bot
